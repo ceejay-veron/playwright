@@ -1,0 +1,93 @@
+install node
+install npm
+ide install vscode
+
+1. create playwright roject
+2. open terminal and run "npm init playwright@latest" or(@version(2.0.0))
+select javascript
+enter name of where you save you end to end test 
+enter y
+enter y
+
+
+1create a new project
+2. click on extension
+search for playwright
+and install playwright for vscode 
+3. goto view > command palette and type playwright select and install playwright
+
+
+my first test
+1. Create a new file under test folder
+2. Add module 'Playwright/test'
+Require is used Load modules in separate files
+const {test, expect} = require('@playwright/test')
+import {test, expect} from'@playwright/test'
+
+
+Commands
+- npx playwright test ./e2e/example.spec.ts 
+- npx playwright codegen
+-npx playwright codegen google.com
+See All Option - npx playwright codegen --help
+Record on a specific browser - npx playwright codegen --browser firefox
+Record and save to a file - npx playwright codegen --target javascript -o ./e2e/example.spec.ts 
+Set viewport- screen resolution(size) - npx playwright codegen --viewport-size=800,600
+Emulate device -- npx playwright codegen --device="iphone 11"
+Emulate color scheme - npx playwright codegen --color-scheme=dark playwright.dev
+view trace -npx playwright show-trace trace.zip
+or - npx playwright show-trace  ./test-results/my_first_test.spec.js/trace.zip  
+
+
+How to use Trace Viewer
+1. open config file and set trace: 'on-first-retry'
+'on-first-retry' - Record a trace only when retrying a test for the first time.
+'off' -Do not record a trace
+'on' - Record a trace for each test. (not recommended as it's performance heavy)
+'retain-on-failure' - Record a trace for each test, but remove it from successful test runs
+2. set retries
+3. check trace.zip file created under test-results folder
+4. or -view trace -npx playwright show-trace trace.zip
+or npx playwright show-trace  ./test-results/my_first_test.spec.js/trace.zip  
+5. or go to trace.playwright.dev
+
+
+HOw to set trace programmatically
+Set Context in BDD
+1.start Tracing
+
+ await context.tracing.start (
+{
+snapshots: true,
+screenshots: true
+
+});
+
+2. stop tracing
+
+await context.tracing.stop({path: 'test1_trace.zip'})
+
+
+
+NOT TO GET NO TEST FOUND
+
+1. set up your own test match regex in the playwright test config.
+By default, Playwright Test looks for files matching .*(test|spec)\.(js|ts|mjs), but you can run any js file by doing this:
+
+
+import { PlaywrightTestConfig, devices } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+  testMatch: /.*.js/,
+};
+export default config;
+
+2. Test should be in e2e folder
+
+3. use forward slashes after launching terminal from vscode on windows laptop and it worked. npx playwright test ./tests/example.spec.js
+
+
+-the keyword async before a function makes the function return a promise
+-the keyword await before a function makes the function wait for a promise
+
+
